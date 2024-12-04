@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'evidenceManagerDB',
         'USER': 'root',
-        'PASSWORD': 'travis2003',
+        'PASSWORD': 'password', #fill in with your own credentials
         'HOST':'localhost',
         'PORT':'3306',
     }
