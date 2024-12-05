@@ -1,0 +1,3 @@
+USE CS157A_ProjectDB;
+SELECT * FROM Employees;
+SELECT * FROM Cases;

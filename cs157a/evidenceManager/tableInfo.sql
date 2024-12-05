@@ -1,4 +1,4 @@
---some information to fill out the tables
+USE CS157A_ProjectDB;
 INSERT INTO Employees (Username, PasswordHash, EmployeeType)
 VALUES
 	('admin1', 'hash_admin1', 'Admins'),

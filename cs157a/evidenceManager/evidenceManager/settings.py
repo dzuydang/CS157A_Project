@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'evidenceManager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'evidenceManagerDB',
-        'USER': 'root',
-        'PASSWORD': 'password', #fill in with your own credentials
-        'HOST':'localhost',
-        'PORT':'3306',
+        'NAME': 'CS157A_ProjectDB',  
+        'USER': 'root',   
+        'PASSWORD': 'password', 
+        'HOST': '127.0.0.1',         
+        'PORT': '3306',              
     }
 }
 
