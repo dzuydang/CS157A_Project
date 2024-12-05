@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Bar Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .search-bar {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .title{
+            text-align: center;
+        }
+        .query-space{
+            margin: 0 10px 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="query-space">
+        <h1 class="title">Search Suspects Database</h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Suspect ID" id="suspectId" />
+            <input type="text" class="search-bar" placeholder="Name" id="suspectName" />
+            <input type="text" class="search-bar" placeholder="Age" id="suspectAge" />
+            <button class="search-button" onclick="performSuspectSearch()">Search</button>
+        </div>
+    </div>
+    
+    <div class="query-space">
+        <h1 class="title">Search Evidence Database</h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Evidence ID" id="evidenceId" />
+            <input type="text" class="search-bar" placeholder="Case ID" id="caseId" />
+            <select class="search-bar" id="evidenceType">
+                <option value="" disabled selected>Select Evidence Type</option>
+                <option value="Physical Evidence">Physical Evidence</option>
+                <option value="Digital Evidence">Digital Evidence</option>
+            </select>
+            <button class="search-button" onclick="performEvidenceSearch()">Search</button>
+        </div>
+    </div>
+
+    <div class="query-space">
+        <h1 class="title">Search Cases Database</h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Case ID" id="searchCaseId" />
+            <select class="search-bar" id="caseStatus">
+                <option value="" disabled selected>Select Case Status</option>
+                <option value="Open">Open</option>
+                <option value="Closed">Closed</option>
+                <option value="Pending">Pending</option>
+                <option value="Archived">Archiving</option>
+            </select>
+            <button class="search-button" onclick="performCasesSearch()">Search</button>
+        </div>
+    </div>
+
+    <div class="query-space">
+        <h1 class="title">Search Documents Database</h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Document ID" id="documentId" />
+            <select class="search-bar" id="documentType">
+                <option value="" disabled selected>Select Document Type</option>
+                <option value="Reports">Reports</option>
+                <option value="Search Warrants">Search Warrants</option>
+                <option value="Court Orders">Court Orders</option>
+                <option value="Chain Of Custody Forms">Chain of Custody Forms</option>
+            </select>
+            <button class="search-button" onclick="performDocumentSearch()">Search</button>
+        </div>
+    </div>
+
+    <div class="query-space">
+        <h1 class="title">Search Legal Entities Database</h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Legal Entity ID" id="legalEntityId" />
+            <select class="search-bar" id="legalEntityType">
+                <option value="" disabled selected>Select Legal Entity Type</option>
+                <option value="Case Judge">Case Judge</option>
+                <option value="Legal Teams">Legal Teams</option>
+                <option value="Defense">Defense</option>
+                <option value="Prosecution">Prosecution</option>
+                <option value="Regulatory Body">Regulatory Body</option>
+            </select>
+            <input type="text" class="search-bar" placeholder="City" id="legalEntityCity" />
+            <input type="text" class="search-bar" placeholder="State" id="legalEntityState" />
+            <button class="search-button" onclick="performLegalEntitySearch()">Search</button>
+        </div>
+    </div>
+
+    <script>
+        function validateNotEmpty(inputValue, fieldName) {
+            if (!inputValue.trim()) {
+                return false;
+            }
+            return true;
+        }
+
+        function performSuspectSearch() {
+            const suspectId = document.getElementById('suspectId').value.trim();
+            const suspectName = document.getElementById('suspectName').value.trim();
+            const suspectAge = document.getElementById('suspectAge').value.trim();
+
+            //validate that at least one is filled
+            if (!suspectId && !suspectName && !suspectAge) {
+                alert(`All fields cannot be empty.`);
+                return;
+            }
+
+
+            /*console.log("Search Inputs:", {
+                suspectId,
+                suspectName,
+                suspectAge,
+            });*/
+
+            // Build the base query
+            let query = `
+                SELECT * 
+                FROM Suspects
+                WHERE 1=1
+            `;
+
+            // Add conditions dynamically
+            if (suspectId) {
+                query += ` AND SuspectID = '${suspectId}'`;
+            }
+            if (suspectName) {
+                query += ` AND Name LIKE '%${suspectName}%'`;
+            }
+            if (suspectAge) {
+                query += ` AND Age = '${suspectAge}'`;
+            }
+
+            console.log("Generated Query:", query);
+
+            // Example: Send query to the backend (replace this with actual logic)
+            //NEED TO IMPLEMENT --------------------------------------------
+            fetch('/search-suspects', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Search Results:", data);
+                })
+                .catch(error => console.error('Error:', error));
+
+        }
+
+
+        function performEvidenceSearch() {
+            const evidenceId = document.getElementById('evidenceId').value.trim();
+            const caseId = document.getElementById('caseId').value.trim();
+            const evidenceType = document.getElementById('evidenceType').value.trim();
+
+            //console.log("Search Inputs:", { evidenceId, caseId, evidenceType });
+
+            // Validate at least one is filled
+            if (!evidenceId && !caseId && !evidenceType) {
+                alert(`All fields cannot be empty.`);
+                return;
+            }
+
+            // Build the base query
+            let query = `
+                SELECT * 
+                FROM Evidence
+                WHERE 1=1
+            `;
+
+            // Add conditions dynamically
+            if (evidenceId) query += ` AND EvidenceID = '${evidenceId}'`;
+            if (caseId) query += ` AND CaseID LIKE '%${caseId}%'`;
+            if (evidenceType) query += ` AND EvidenceType = '${evidenceType}'`;
+
+            console.log("Generated Query:", query);
+
+            // Fetch results from the backend
+            fetch('/search-evidence', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Search Results:", data);
+                    renderResults(data); // Display results
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while performing the search. Please try again.');
+                });
+        }
+
+
+        function performCasesSearch() {
+            const searchCaseId = document.getElementById('searchCaseId').value.trim();
+            const caseStatus = document.getElementById('caseStatus').value.trim();
+
+            /*console.log("Search Inputs:", {
+                searchCaseId,
+                caseStatus
+            });*/
+
+            // Validate that at least one field is filled
+            if (!searchCaseId && !caseStatus) {
+                alert(`All fields cannot be empty.`);
+                return;
+            }
+
+            // Build the base query
+            let query = `
+                SELECT * 
+                FROM Cases
+                WHERE 1=1
+            `;
+
+            // Add conditions dynamically
+            if (searchCaseId) {
+                query += ` AND CaseID = '${searchCaseId}'`;
+            }
+            if (caseStatus) {
+                query += ` AND CaseStatus = '${caseStatus}'`;
+            }
+
+            console.log("Generated Query:", query);
+
+            // Example: Send query to the backend (replace this with actual logic)
+            fetch('/search-cases', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Search Results:", data);
+                    renderResults(data); // Display results
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while performing the search. Please try again.');
+                });
+        }
+
+        function performDocumentSearch() {
+            const documentId = document.getElementById('documentId').value.trim();
+            const documentType = document.getElementById('documentType').value.trim();
+
+            /*
+            console.log("Search Inputs:", {
+                documentId,
+                documentType,
+            });*/
+
+            // Validate that at least one field is filled
+            if (!documentId && !documentType) {
+                alert(`All fields cannot be empty.`);
+                return;
+            }
+
+            
+
+            // Build the base query
+            let query = `
+                SELECT * 
+                FROM Documents
+                WHERE 1=1
+            `;
+
+            // Add conditions dynamically
+            if (documentId) {
+                query += ` AND DocumentID = '${documentId}'`;
+            }
+            if (documentType) {
+                query += ` AND DocumentType = '${documentType}'`;
+            }
+
+            console.log("Generated Query:", query);
+
+            // Example: Send query to the backend (replace this with actual logic)
+            fetch('/search-documents', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Search Results:", data);
+                    renderResults(data); // Display results
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while performing the search. Please try again.');
+                });
+        }
+
+        function performLegalEntitySearch() {
+            const legalEntityId = document.getElementById('legalEntityId').value.trim();
+            const legalEntityType = document.getElementById('legalEntityType').value.trim();
+            const legalEntityCity = document.getElementById('legalEntityCity').value.trim();
+            const legalEntityState = document.getElementById('legalEntityState').value.trim();
+
+            console.log("Search Inputs:", {
+                legalEntityId,
+                legalEntityType,
+                legalEntityCity,
+                legalEntityState,
+            });
+
+            // Validate that at least one field is filled
+            if (!legalEntityId && !legalEntityType && !legalEntityCity && !legalEntityState) {
+                alert(`All fields cannot be empty.`);
+                return;
+            }
+
+            // Build the base query
+            let query = `
+                SELECT * 
+                FROM LegalEntities
+                WHERE 1=1
+            `;
+
+            // Add conditions dynamically
+            if (legalEntityId) {
+                query += ` AND LegalEntityID = '${legalEntityId}'`;
+            }
+            if (legalEntityType) {
+                query += ` AND EntityType = '${legalEntityType}'`;
+            }
+            if (legalEntityCity) {
+                query += ` AND City LIKE '%${legalEntityCity}%'`;
+            }
+            if (legalEntityState) {
+                query += ` AND State = '${legalEntityState}'`;
+            }
+
+            console.log("Generated Query:", query);
+
+            // Example: Send query to the backend (replace this with actual logic)
+            fetch('/search-legal-entities', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Search Results:", data);
+                    renderResults(data); // Display results
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while performing the search. Please try again.');
+                });
+        }
+
+        function renderResults(data) {
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.textContent = JSON.stringify(item); // Customize for better rendering
+                resultsContainer.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
