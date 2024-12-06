@@ -12,9 +12,10 @@
         }
         .search-container {
             display: flex;
+            flex-wrap: wrap;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
             margin-top: 10px;
         }
         .search-bar {
@@ -43,80 +44,97 @@
         .query-space{
             margin: 0 10px 0 10px;
         }
+        .searchSpace{
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+        
+        
+        
     </style>
 </head>
 <body>
-    <div class="query-space">
-        <h1 class="title">Search Suspects Database</h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Suspect ID" id="suspectId" />
-            <input type="text" class="search-bar" placeholder="Name" id="suspectName" />
-            <input type="text" class="search-bar" placeholder="Age" id="suspectAge" />
-            <button class="search-button" onclick="performSuspectSearch()">Search</button>
+    <div class="entireScreen">
+        <div class="searchSpace">
+            <div class="query-space">
+                <h1 class="title">Search Suspects Database</h1>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Suspect ID" id="suspectId" />
+                    <input type="text" class="search-bar" placeholder="Name" id="suspectName" />
+                    <input type="text" class="search-bar" placeholder="Age" id="suspectAge" />
+                    <button class="search-button" onclick="performSuspectSearch()">Search</button>
+                </div>
+            </div>
+            
+            <div class="query-space">
+                <h1 class="title">Search Evidence Database</h1>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Evidence ID" id="evidenceId" />
+                    <input type="text" class="search-bar" placeholder="Case ID" id="caseId" />
+                    <select class="search-bar" id="evidenceType">
+                        <option value="" disabled selected>Select Evidence Type</option>
+                        <option value="Physical Evidence">Physical Evidence</option>
+                        <option value="Digital Evidence">Digital Evidence</option>
+                    </select>
+                    <button class="search-button" onclick="performEvidenceSearch()">Search</button>
+                </div>
+            </div>
+        
+            <div class="query-space">
+                <h1 class="title">Search Cases Database</h1>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Case ID" id="searchCaseId" />
+                    <select class="search-bar" id="caseStatus">
+                        <option value="" disabled selected>Select Case Status</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Archived">Archiving</option>
+                    </select>
+                    <button class="search-button" onclick="performCasesSearch()">Search</button>
+                </div>
+            </div>
+        
+            <div class="query-space">
+                <h1 class="title">Search Documents Database</h1>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Document ID" id="documentId" />
+                    <select class="search-bar" id="documentType">
+                        <option value="" disabled selected>Select Document Type</option>
+                        <option value="Reports">Reports</option>
+                        <option value="Search Warrants">Search Warrants</option>
+                        <option value="Court Orders">Court Orders</option>
+                        <option value="Chain Of Custody Forms">Chain of Custody Forms</option>
+                    </select>
+                    <button class="search-button" onclick="performDocumentSearch()">Search</button>
+                </div>
+            </div>
+        
+            <div class="query-space">
+                <h1 class="title">Search Legal Entities Database</h1>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Legal Entity ID" id="legalEntityId" />
+                    <select class="search-bar" id="legalEntityType">
+                        <option value="" disabled selected>Select Legal Entity Type</option>
+                        <option value="Case Judge">Case Judge</option>
+                        <option value="Legal Teams">Legal Teams</option>
+                        <option value="Defense">Defense</option>
+                        <option value="Prosecution">Prosecution</option>
+                        <option value="Regulatory Body">Regulatory Body</option>
+                    </select>
+                    <input type="text" class="search-bar" placeholder="City" id="legalEntityCity" />
+                    <input type="text" class="search-bar" placeholder="State" id="legalEntityState" />
+                    <button class="search-button" onclick="performLegalEntitySearch()">Search</button>
+                </div>
+            </div>
         </div>
+        <div id="results"></div>
     </div>
     
-    <div class="query-space">
-        <h1 class="title">Search Evidence Database</h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Evidence ID" id="evidenceId" />
-            <input type="text" class="search-bar" placeholder="Case ID" id="caseId" />
-            <select class="search-bar" id="evidenceType">
-                <option value="" disabled selected>Select Evidence Type</option>
-                <option value="Physical Evidence">Physical Evidence</option>
-                <option value="Digital Evidence">Digital Evidence</option>
-            </select>
-            <button class="search-button" onclick="performEvidenceSearch()">Search</button>
-        </div>
-    </div>
-
-    <div class="query-space">
-        <h1 class="title">Search Cases Database</h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Case ID" id="searchCaseId" />
-            <select class="search-bar" id="caseStatus">
-                <option value="" disabled selected>Select Case Status</option>
-                <option value="Open">Open</option>
-                <option value="Closed">Closed</option>
-                <option value="Pending">Pending</option>
-                <option value="Archived">Archiving</option>
-            </select>
-            <button class="search-button" onclick="performCasesSearch()">Search</button>
-        </div>
-    </div>
-
-    <div class="query-space">
-        <h1 class="title">Search Documents Database</h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Document ID" id="documentId" />
-            <select class="search-bar" id="documentType">
-                <option value="" disabled selected>Select Document Type</option>
-                <option value="Reports">Reports</option>
-                <option value="Search Warrants">Search Warrants</option>
-                <option value="Court Orders">Court Orders</option>
-                <option value="Chain Of Custody Forms">Chain of Custody Forms</option>
-            </select>
-            <button class="search-button" onclick="performDocumentSearch()">Search</button>
-        </div>
-    </div>
-
-    <div class="query-space">
-        <h1 class="title">Search Legal Entities Database</h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Legal Entity ID" id="legalEntityId" />
-            <select class="search-bar" id="legalEntityType">
-                <option value="" disabled selected>Select Legal Entity Type</option>
-                <option value="Case Judge">Case Judge</option>
-                <option value="Legal Teams">Legal Teams</option>
-                <option value="Defense">Defense</option>
-                <option value="Prosecution">Prosecution</option>
-                <option value="Regulatory Body">Regulatory Body</option>
-            </select>
-            <input type="text" class="search-bar" placeholder="City" id="legalEntityCity" />
-            <input type="text" class="search-bar" placeholder="State" id="legalEntityState" />
-            <button class="search-button" onclick="performLegalEntitySearch()">Search</button>
-        </div>
-    </div>
+    
+    
 
     <script>
         function validateNotEmpty(inputValue, fieldName) {
@@ -385,17 +403,54 @@
                     alert('An error occurred while performing the search. Please try again.');
                 });
         }
-
+        
         function renderResults(data) {
             const resultsContainer = document.getElementById('results');
             resultsContainer.innerHTML = ''; // Clear previous results
 
-            data.forEach(item => {
-                const div = document.createElement('div');
-                div.textContent = JSON.stringify(item); // Customize for better rendering
-                resultsContainer.appendChild(div);
+            // If no results, show a message
+            if (data.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+                return;
+            }
+
+            // Create a table element
+            const table = document.createElement('table');
+            table.border = '1';
+            table.style.width = '100%';
+            table.style.borderCollapse = 'collapse';
+
+            // Create the table header
+            const headers = Object.keys(data[0]);
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                th.style.padding = '8px';
+                th.style.border = '1px solid black';
+                th.style.textAlign = 'left';
+                headerRow.appendChild(th);
             });
+            table.appendChild(headerRow);
+
+            // Create the table rows
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                headers.forEach(header => {
+                    const td = document.createElement('td');
+                    td.textContent = item[header];
+                    td.style.padding = '8px';
+                    td.style.border = '1px solid black';
+                    row.appendChild(td);
+                });
+                table.appendChild(row);
+            });
+
+            // Append the table to the results container
+            resultsContainer.appendChild(table);
         }
+        
     </script>
+    
 </body>
 </html>
