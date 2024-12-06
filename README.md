@@ -25,3 +25,10 @@ Steps to run program:
 5. Start the Django development server by navigating to the evidenceManager directory and running 'python manage.py runserver'. This will start up the Django backend server to handle our frontend API requests.
 6. Navigate to the frontend folder in VSCode and right click while having searchPage.html open. Click on "Open with Live Server", which will open the live server to display the front end.
 7. Now queries can be set up and run as needed!
+
+DIVISION OF LABOR:
+   - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity
+   - Saul Figueroa: ER Diagram, Report, Presentation Slides
+   - Travis Nguyen: Database setup, Database population, Settings.py setup
+   - Javier Aguilar Ochoa: Report, Presentation Slides
+   - Fabian Garcia Quinonez: 
