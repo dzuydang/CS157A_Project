@@ -27,6 +27,12 @@
 
 4. Apply Database Migrations
    - Apply database migrations by running 'python manage.py migrate'.
+   - In the case that the migration fails, run the following:
+   - '''python manage.py showmigrations'''
+   - '''python manage.py migrate evidence --fake'''
+   - Then retry the 'python manage.py migrate' command.
+   - ![image](https://github.com/user-attachments/assets/8514875b-e9e3-494a-bc91-4001d5437002)
+
 5. Starting Django Development Server
    - Start the Django development server by navigating to the evidenceManager directory and running 'python manage.py runserver'. This will start up the Django backend server to handle our frontend API requests.
 6. Open Frontend with Live Server
