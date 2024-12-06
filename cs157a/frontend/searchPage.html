@@ -166,11 +166,12 @@
 
             // Example: Send query to the backend (replace this with actual logic)
             //NEED TO IMPLEMENT --------------------------------------------
-            fetch('/search-suspects', {
+            fetch('http://127.0.0.1:8000/search-suspects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query }),
             })
+                
                 .then(response => response.json())
                 .then(data => {
                     console.log("Search Results:", data);
@@ -208,7 +209,7 @@
             console.log("Generated Query:", query);
 
             // Fetch results from the backend
-            fetch('/search-evidence', {
+            fetch('http://127.0.0.1:8000/search-evidence', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query }),
@@ -216,7 +217,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log("Search Results:", data);
-                    renderResults(data); // Display results
+                    //renderResults(data); // Display results
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -258,7 +259,7 @@
             console.log("Generated Query:", query);
 
             // Example: Send query to the backend (replace this with actual logic)
-            fetch('/search-cases', {
+            fetch('http://127.0.0.1:8000/search-cases', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query }),
@@ -266,7 +267,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log("Search Results:", data);
-                    renderResults(data); // Display results
+                    //renderResults(data); // Display results
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -310,7 +311,7 @@
             console.log("Generated Query:", query);
 
             // Example: Send query to the backend (replace this with actual logic)
-            fetch('/search-documents', {
+            fetch('http://127.0.0.1:8000/search-documents', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query }),
@@ -369,7 +370,7 @@
             console.log("Generated Query:", query);
 
             // Example: Send query to the backend (replace this with actual logic)
-            fetch('/search-legal-entities', {
+            fetch('http://127.0.0.1:8000/search-legal-entities', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query }),
