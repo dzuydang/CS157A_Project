@@ -45,4 +45,4 @@
    - Saul Figueroa: ER Diagram, Report, Presentation Slides, Schema Refinement/Normalization
    - Travis Nguyen: Database setup, Database population, Settings.py setup, Schema Refinement/Normalization
    - Javier Aguilar Ochoa: Report, Presentation Slides
-   - Fabian Garcia Quinonez: Initial Django Project Setup
+   - Fabian Garcia Quinonez: Initial Django Project Setup, Report
