@@ -27,7 +27,7 @@ Steps to run program:
 7. Now queries can be set up and run as needed!
 
 DIVISION OF LABOR:
-   - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity
+   - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity, Readme file
    - Saul Figueroa: ER Diagram, Report, Presentation Slides
    - Travis Nguyen: Database setup, Database population, Settings.py setup
    - Javier Aguilar Ochoa: Report, Presentation Slides
