@@ -28,7 +28,7 @@ Steps to run program:
 
 DIVISION OF LABOR:
    - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity, Readme file
-   - Saul Figueroa: ER Diagram, Report, Presentation Slides
-   - Travis Nguyen: Database setup, Database population, Settings.py setup
+   - Saul Figueroa: ER Diagram, Report, Presentation Slides, Schema Refinement/Normalization
+   - Travis Nguyen: Database setup, Database population, Settings.py setup, Schema Refinement/Normalization
    - Javier Aguilar Ochoa: Report, Presentation Slides
-   - Fabian Garcia Quinonez: 
+   - Fabian Garcia Quinonez: Initial Django Project Setup
