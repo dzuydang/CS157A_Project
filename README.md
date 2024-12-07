@@ -41,8 +41,8 @@
     - Now queries can be set up and run as needed!
 
 ### DIVISION OF LABOR:
-   - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity, Readme file
+   - Dzuy Dang: Frontend, Backend, Frontend-Backend Connectivity, Readme file, Report
    - Saul Figueroa: ER Diagram, Report, Presentation Slides, Schema Refinement/Normalization
    - Travis Nguyen: Database setup, Database population, Settings.py setup, Schema Refinement/Normalization
    - Javier Aguilar Ochoa: Report, Presentation Slides
-   - Fabian Garcia Quinonez: Initial Django Project Setup, Report
+   - Fabian Garcia Quinonez: Initial Django Project Setup
